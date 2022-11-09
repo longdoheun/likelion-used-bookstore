@@ -5,7 +5,7 @@ import React from 'react'
 export default function MyPage() {
   return (
     <>
-        <div css={style}>this is MyPage</div>
+      <div css={style}>this is MyPage</div>
     </>
   )
 }
