@@ -2,6 +2,7 @@
 import { css } from "@emotion/react"
 import { useNavigate } from "react-router-dom"
 import React from 'react'
+import MenuBar from "../components/MenuBar";
 
 
 export default function Main() {
@@ -10,6 +11,7 @@ export default function Main() {
   return (
     <>
         <div css={style}>This is main page</div>
+        <MenuBar/>
         <div onClick={()=>{navigate("/login")}}>login page</div>
         <div onClick={()=>{navigate("/Signin")}}>signin page</div>
         <div onClick={()=>{navigate("/Admin")}}>Admin page</div>
