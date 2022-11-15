@@ -44,6 +44,7 @@ const style = css`
   justify-content: center;
   align-items: center;
   width: 100%;
+  background-color: #f9f7f3;
 `;
 
 export default App;
