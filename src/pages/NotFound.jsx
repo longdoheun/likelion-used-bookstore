@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React from "react";
-import notFoundImg from "../assets/images/notFound.png";
+import { ReactComponent as NotFoundImg } from "../assets/svg/notFound.svg";
 import { useNavigate } from "react-router-dom";
 
 export default function NotFound() {
   // const navigate = useNavigate();
   return (
     <div css={notFoundStyle}>
-      <img src={notFoundImg} alt="notfound" />
+      <NotFoundImg />
       <h1 css={h1Style}>요청하신 페이지를 찾을 수 없습니다.</h1>
       <h3 css={h3Style}>
         페이지가 존재하지 않거나, 사용할 수 없는 페이지입니다.
