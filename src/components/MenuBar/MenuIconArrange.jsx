@@ -72,5 +72,4 @@ const LogoStyle = css`
   width: 70px;
   height: 70px;
   background: #f3ece6;
-  /* margin-top: 44px; */
 `;

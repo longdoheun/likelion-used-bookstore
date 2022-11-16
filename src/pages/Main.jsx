@@ -60,6 +60,13 @@ export default function Main() {
       >
         products page
       </div>
+      <div
+        onClick={() => {
+          navigate("/cart");
+        }}
+      >
+        cart page
+      </div>
     </>
   );
 }

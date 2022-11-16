@@ -2,6 +2,7 @@
 import { css } from "@emotion/react";
 import { Route, Routes } from "react-router-dom";
 import Admin from "./pages/Admin";
+import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import Main from "./pages/Main";
 import MyPage from "./pages/MyPage";
@@ -19,6 +20,7 @@ function App() {
         <Route path="/admin" element={<Admin />}></Route>
         <Route path="/mypage" element={<MyPage />}></Route>
         <Route path="/products" element={<Products />}></Route>
+        <Route path="/cart" element={<Cart />}></Route>
         <Route
           path="/products/:product_id"
           element={<ProductsDetail />}
