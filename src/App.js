@@ -1,6 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import MenuBar from "./components/MenuBar";
 import Admin from "./pages/Admin";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
@@ -13,8 +15,18 @@ import ProductsDetail from "./pages/ProductsDetail";
 import SignIn from "./pages/SignIn";
 
 function App() {
+  const [isVaildPath, setIsVaildPath] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    const blaklistedPaths = ["/login", "/signin"];
+    setIsVaildPath(!blaklistedPaths.find((path) => path === location.pathname));
+    // console.log(blaklistedPaths.find((path) => path === location.pathname));
+  }, [location]);
+
   return (
     <div className="App" css={style}>
+      {isVaildPath ? <MenuBar /> : null}
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/admin" element={<Admin />}></Route>

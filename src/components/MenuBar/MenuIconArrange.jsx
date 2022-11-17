@@ -29,7 +29,7 @@ export default function MenuIconArrange() {
       <CartIcon
         css={IconStyle}
         onClick={() => {
-          navigate();
+          navigate("/cart");
         }}
       />
       <SettingsIcon
