@@ -15,18 +15,19 @@ import ProductsDetail from "./pages/ProductsDetail";
 import SignIn from "./pages/SignIn";
 
 function App() {
-  const [isVaildPath, setIsVaildPath] = useState(false);
+  const [isInvaildPath, setIsInvaildPath] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const blaklistedPaths = ["/login", "/signin"];
-    setIsVaildPath(!blaklistedPaths.find((path) => path === location.pathname));
-    // console.log(blaklistedPaths.find((path) => path === location.pathname));
+    setIsInvaildPath(
+      blaklistedPaths.find((path) => path === location.pathname)
+    );
   }, [location]);
 
   return (
     <div className="App" css={style}>
-      {isVaildPath ? <MenuBar /> : null}
+      {isInvaildPath ? null : <MenuBar />}
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/admin" element={<Admin />}></Route>

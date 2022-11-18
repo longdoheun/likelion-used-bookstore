@@ -32,16 +32,17 @@ const h1Style = css`
   font-family: "Roboto";
   font-style: normal;
   font-weight: 700;
-  font-size: 36px;
-  line-height: 42px;
+  font-size: 32px;
+  line-height: 38px;
   color: #403600;
 `;
 const h3Style = css`
+  margin-top: 25px;
   font-family: "Roboto";
   font-style: normal;
   font-weight: 500;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 20px;
+  line-height: 23px;
   text-align: center;
 
   color: #403600;

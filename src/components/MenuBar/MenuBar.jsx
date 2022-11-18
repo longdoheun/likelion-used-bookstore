@@ -20,23 +20,23 @@ export default function MenuBar() {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(position, menuBarRef.current.scrollTop);
-    menuBarRef.current.animate(
-      {
-        transform: [`translateY(${position}px)`],
-      },
-      {
-        duration: 500, // 밀리초 지정
-        fill: "forwards", // 종료 시 속성을 지님
-        easing: "ease", // 가속도 종류
-      }
-    );
-  }, [position]);
+  // useEffect(() => {
+  //   // console.log(position, menuBarRef.current.scrollTop);
+  //   menuBarRef.current.animate(
+  //     {
+  //       transform: [`translateY(${position}px)`],
+  //     },
+  //     {
+  //       duration: 500, // 밀리초 지정
+  //       fill: "forwards", // 종료 시 속성을 지님
+  //       easing: "ease", // 가속도 종류
+  //     }
+  //   );
+  // }, [position]);
 
   return (
     <>
-      <div css={containerStyle}>
+      <div css={containerStyle(position)}>
         <div ref={menuBarRef} css={menuBarStyle}>
           <MenuIconArrange />
         </div>
@@ -45,10 +45,11 @@ export default function MenuBar() {
   );
 }
 
-const containerStyle = css`
+const containerStyle = (props) => css`
   position: absolute;
   left: 50px;
-  top: 81px;
+  top: ${81 + props}px;
+  animation: all 1s ease;
 `;
 
 const menuBarStyle = css`
