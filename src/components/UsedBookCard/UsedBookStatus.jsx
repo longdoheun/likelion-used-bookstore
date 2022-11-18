@@ -8,23 +8,21 @@ export default function UsedBookStatus(props) {
   const navigate = useNavigate();
 
   return (
-    <>
-      <div
-        css={usedBookStatusStyle}
-        onClick={() => {
-          navigate("/products/" + data.product_id);
-        }}
-      >
-        <h1 css={titleStyle}>{data.title}</h1>
-        <h3 css={authorStyle}>저자: {data.authors}</h3>
-        <div css={containerStyle}>
-          <h3 css={statusStyle}>
-            등급: {data.rank} | {data.conditions}
-          </h3>
-          <h2 css={priceStyle}>{data.price}원</h2>
-        </div>
+    <div
+      css={usedBookStatusStyle}
+      onClick={() => {
+        navigate("/products/" + data.product_id);
+      }}
+    >
+      <h1 css={titleStyle}>{data.title}</h1>
+      <h3 css={authorStyle}>저자: {data.authors}</h3>
+      <div css={containerStyle}>
+        <h3 css={statusStyle}>
+          등급: {data.rank} | {data.conditions}
+        </h3>
+        <h2 css={priceStyle}>{data.price}원</h2>
       </div>
-    </>
+    </div>
   );
 }
 
