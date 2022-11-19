@@ -1,4 +1,5 @@
-/** @jsxImportSource @emotion/react */ import { css } from "@emotion/react";
+/** @jsxImportSource @emotion/react */
+import { css } from "@emotion/react";
 import React from "react";
 import UsedBookCard from "../UsedBookCard";
 

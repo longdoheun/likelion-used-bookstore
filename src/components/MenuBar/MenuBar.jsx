@@ -35,24 +35,13 @@ export default function MenuBar() {
   // }, [position]);
 
   return (
-    <>
-      <div css={containerStyle(position)}>
-        <div ref={menuBarRef} css={menuBarStyle}>
-          <MenuIconArrange />
-        </div>
-      </div>
-    </>
+    <div ref={menuBarRef} css={menuBarStyle(position)}>
+      <MenuIconArrange />
+    </div>
   );
 }
 
-const containerStyle = (props) => css`
-  position: absolute;
-  left: 0;
-  top: ${81 + props}px;
-  animation: all 1s ease;
-`;
-
-const menuBarStyle = css`
+const menuBarStyle = (props) => css`
   box-sizing: border-box;
   width: 100px;
   height: 600px;
@@ -62,5 +51,8 @@ const menuBarStyle = css`
   flex-direction: column;
   align-items: center;
   z-index: 3;
-  position: relative;
+  /* position: fixed; */
+  left: 0;
+  top: ${81 + props}px;
+  top: 81px;
 `;

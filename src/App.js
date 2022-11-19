@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { css } from "@emotion/react";
+// import { css } from "@emotion/react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import MenuBar from "./components/MenuBar";
@@ -13,8 +13,11 @@ import Payment from "./pages/Payment";
 import Products from "./pages/Products";
 import ProductsDetail from "./pages/ProductsDetail";
 import SignIn from "./pages/SignIn";
+import AppLayout from "./components/AppLayout";
+import MobileMenuBar from "./components/MobileMenuBar";
 
 function App() {
+  const [isClicked, setIsClicked] = useState(false);
   const [isInvaildPath, setIsInvaildPath] = useState(false);
   const location = useLocation();
 
@@ -26,8 +29,17 @@ function App() {
   }, [location]);
 
   return (
-    <div className="App" css={style}>
-      {isInvaildPath ? null : <MenuBar />}
+    <div className="App">
+      {isInvaildPath ? null : (
+        <AppLayout.Side>
+          {isClicked && <MenuBar />}
+          <MobileMenuBar
+            onClick={() => {
+              setIsClicked(isClicked ? false : true);
+            }}
+          />
+        </AppLayout.Side>
+      )}
       <Routes>
         <Route path="/" element={<Main />}></Route>
         <Route path="/admin" element={<Admin />}></Route>
@@ -50,12 +62,12 @@ function App() {
   );
 }
 
-const style = css`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-`;
+// const style = css`
+//   display: flex;
+//   flex-direction: column;
+//   justify-content: center;
+//   align-items: center;
+//   width: 100%;
+// `;
 
 export default App;

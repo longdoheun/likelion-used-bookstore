@@ -3,23 +3,26 @@ import { css } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
 import React from "react";
 import BookCardSlot from "../components/BookCardSlot";
+import Banner from "../components/Banner";
+import AppLayout from "../components/AppLayout";
 
 export default function Main() {
   const navigate = useNavigate();
-  const containerStyle = css`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 65px;
-    gap: 4.0625rem;
-  `;
-
   return (
-    <>
-      <div css={containerStyle}>
-        <BookCardSlot bookCardlistName={"교양 서적"} bookCardList={DummyList} />
-        <BookCardSlot bookCardlistName={"전공 서적"} bookCardList={DummyList} />
-      </div>
+    <div>
+      <Banner />
+      <AppLayout.Main>
+        <div css={containerStyle}>
+          <BookCardSlot
+            bookCardlistName={"교양 서적"}
+            bookCardList={DummyList}
+          />
+          <BookCardSlot
+            bookCardlistName={"전공 서적"}
+            bookCardList={DummyList}
+          />
+        </div>
+      </AppLayout.Main>
       <div
         onClick={() => {
           navigate("/login");
@@ -48,9 +51,17 @@ export default function Main() {
       >
         payment page
       </div>
-    </>
+    </div>
   );
 }
+const containerStyle = css`
+  margin-top: 130px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* gap: 65px; */
+  gap: 4.0625rem;
+`;
 
 const DummyData = {
   product_id: "askdjlf183jskcf",

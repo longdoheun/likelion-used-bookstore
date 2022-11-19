@@ -4,9 +4,9 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ReactComponent as BookIcon } from "../../assets/svg/book.svg";
 import { ReactComponent as HomeIcon } from "../../assets/svg/home.svg";
 import { ReactComponent as CartIcon } from "../../assets/svg/cart.svg";
-import { ReactComponent as LogoIcon } from "../../assets/svg/logo.svg";
 import { ReactComponent as MyPageIcon } from "../../assets/svg/mypage.svg";
 import { ReactComponent as LogoutIcon } from "../../assets/svg/logout.svg";
+import { ReactComponent as LogoIcon } from "../../assets/svg/logo.svg";
 import React from "react";
 
 export default function MenuIconArrange() {
@@ -14,12 +14,8 @@ export default function MenuIconArrange() {
   const location = useLocation();
   return (
     <div css={IconArrangeStyle}>
-      <LogoIcon
-        css={LogoStyle}
-        onClick={() => {
-          navigate("/");
-        }}
-      />
+      <LogoIcon css={LogoStyle} />
+
       <HomeIcon
         css={isIconStyle(location.pathname === "/")}
         onClick={() => {
