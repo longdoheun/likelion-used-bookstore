@@ -20,8 +20,10 @@ const slotTitleStyle = css`
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 32px;
-  line-height: 70px;
+  font-size: 2rem;
+  line-height: 4.375rem;
+  /* font-size: 32px;
+  line-height: 70px; */
   /* identical to box height, or 219% */
 
   letter-spacing: 0.1px;
@@ -34,5 +36,6 @@ const slotStyle = css`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: 30px;
+  gap: 1.875rem;
+  /* gap: 30px; */
 `;

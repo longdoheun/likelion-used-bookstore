@@ -9,9 +9,10 @@ export const size = {
 const theme = {
   mainColor: "#f9f7f3",
   mq: {
-    laptop: `@media only screen and (min-width: ${size.largest})`,
-    tablet: `@media only screen and (min-width: ${size.large})`,
-    mobile: `@media only screen and (min-width: ${size.small})`,
+    laptopL: `@media only screen and (min-width: ${1440}px)`,
+    laptopS: `@media only screen and (min-width: ${1024}px)`,
+    tablet: `@media only screen and (min-width: ${768}px)`,
+    mobile: `@media only screen and (min-width: ${400}px)`,
   },
 };
 

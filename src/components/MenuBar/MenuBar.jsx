@@ -47,7 +47,7 @@ export default function MenuBar() {
 
 const containerStyle = (props) => css`
   position: absolute;
-  left: 50px;
+  left: 0;
   top: ${81 + props}px;
   animation: all 1s ease;
 `;

@@ -6,10 +6,16 @@ import BookCardSlot from "../components/BookCardSlot";
 
 export default function Main() {
   const navigate = useNavigate();
+  const containerStyle = css`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 65px;
+    gap: 4.0625rem;
+  `;
 
   return (
     <>
-      <div css={style}>This is main page</div>
       <div css={containerStyle}>
         <BookCardSlot bookCardlistName={"교양 서적"} bookCardList={DummyList} />
         <BookCardSlot bookCardlistName={"전공 서적"} bookCardList={DummyList} />
@@ -45,16 +51,6 @@ export default function Main() {
     </>
   );
 }
-const containerStyle = css`
-  width: 80%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 65px;
-`;
-const style = css`
-  color: #000;
-`;
 
 const DummyData = {
   product_id: "askdjlf183jskcf",
