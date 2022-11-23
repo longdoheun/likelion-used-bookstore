@@ -23,6 +23,7 @@ const style = css`
     }
     ${media.mobile} {
       font-size: 87.5%;
+      /* font-size: 75%; */
     }
   }
 
