@@ -17,20 +17,15 @@ export default function MyPage() {
   return (
     <div css={wrap}>
       <AppLayout.Main>
-      <div css={style}>this is MyPage</div>
-      <MyInfo myInfo={information}></MyInfo>
-      <OrderHistory></OrderHistory>
+        <MyInfo myInfo={information}></MyInfo>
+        <OrderHistory></OrderHistory>
       </AppLayout.Main>
     </div>
   )
 }
 
-const style = css`
-    color : #000;
-`
-
 const wrap = css`
-padding-left: 160px;
+  padding-left: 160px;
   display: flex;
   flex-direction: column;
   align-items: center;

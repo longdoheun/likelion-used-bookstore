@@ -26,7 +26,7 @@ export default function OrderHistory(props) {
 
 const wrapStyle = css`
   margin-bottom: 20px;
-  margin-top: 60px;
+  margin-top: 80px;
 `
 
 const slotTitleStyle = css`
