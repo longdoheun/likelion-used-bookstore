@@ -5,11 +5,13 @@ import React from "react";
 import BookCardSlot from "../components/BookCardSlot";
 import Banner from "../components/Banner";
 import AppLayout from "../components/AppLayout";
+import Header from "../components/Header";
 
 export default function Main() {
   const navigate = useNavigate();
   return (
     <div>
+      <Header />
       <Banner />
       <AppLayout.Main>
         <div css={containerStyle}>

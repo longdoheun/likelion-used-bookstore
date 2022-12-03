@@ -23,11 +23,28 @@ const style = css`
     }
     ${media.mobile} {
       font-size: 87.5%;
+      /* font-size: 75%; */
     }
   }
 
   body {
     box-sizing: border-box;
     background-color: #f9f7f3;
+  }
+
+  input::placeholder {
+    color: #b9b084;
+  }
+
+  input {
+    font-family: "Inter";
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 12px;
+    background-color: transparent;
+    outline: none;
+    border: none;
+    color: #403600;
   }
 `;

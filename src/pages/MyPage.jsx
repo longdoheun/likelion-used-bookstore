@@ -4,6 +4,7 @@ import React from 'react'
 import MyInfo from "../components/MyInfo"
 import OrderHistory from "../components/OrderHistory"
 import AppLayout from "../components/AppLayout";
+import Header from "../components/Header";
 
 let information = {
   name:"김멋사",
@@ -15,17 +16,20 @@ let information = {
 
 export default function MyPage() {
   return (
-    <div css={wrap}>
-      <AppLayout.Main>
-        <MyInfo myInfo={information}></MyInfo>
-        <OrderHistory></OrderHistory>
-      </AppLayout.Main>
-    </div>
+    <>
+    <Header></Header>
+      <div css={wrap}>
+        <AppLayout.Main>
+          <MyInfo myInfo={information}></MyInfo>
+          <OrderHistory></OrderHistory>
+        </AppLayout.Main>
+      </div>
+    </>
+    
   )
 }
 
 const wrap = css`
-  padding-left: 160px;
   display: flex;
   flex-direction: column;
   align-items: center;

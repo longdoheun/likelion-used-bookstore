@@ -15,13 +15,13 @@ export default function CartBox() {
             <CartElement></CartElement>
             <CartElement></CartElement>
             <CartElement></CartElement>
+            <CartElement></CartElement>
         </div>
       </div>
     );
   }
 
 const cartBoxWrap = css`
-    margin-top: 120px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -33,4 +33,9 @@ const cartListBox = css`
     border-radius: 20px;
     width: 1090px;
     padding: 34px 0px 34px 53px;
+    width: 1124px;
+    padding: 34px 66px 34px 66px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 `

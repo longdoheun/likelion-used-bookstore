@@ -37,7 +37,7 @@ const sidebarStyle = css`
 
 const mainStyle = css`
   position: relative;
-  ${media.laptopL} {
+  ${media.laptopXL} {
     margin: 0 50px;
   }
   ${media.laptopS} {

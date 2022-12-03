@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React from "react";
-import CartBuyButton from "./CartBuyButton";
+import CartBuyButton from "../CartBuyNow/CartBuyButton"
 
 export default function CartBuyBox() {
     return (

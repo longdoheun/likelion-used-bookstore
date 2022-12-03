@@ -32,6 +32,11 @@ const cartElementWrap = css`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 1111px;
+    height: 175px;
+    display: flex;
+    justify-content: space-between;
+  align-items: center;
 `
 
 const bookInfoWrap = css`
