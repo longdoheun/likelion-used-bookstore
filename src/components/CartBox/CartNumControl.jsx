@@ -29,7 +29,7 @@ const editButton = css`
 `
 
 const countStyle = css`
-  width: 44px;
+  width: 36px;
   height: 25px;
   background-color: #FFFFFF;
   font-weight: 600;

@@ -5,6 +5,7 @@ import check_true from "../../assets/images/cart_check_true.png"
 import React from "react";
 import CartBookImage from "./CartBookImage"
 import CartPriceNOption from "./CartPriceNOption"
+import CartNumControl from "./CartNumControl"
 
 export default function CartElement() {
     return (
@@ -19,6 +20,7 @@ export default function CartElement() {
                     <p>성균관대학교 출판부</p>
                 </div>
                 <p css={bookOptionStyle}>선택 옵션 B</p>
+                <CartNumControl></CartNumControl>
             </section>
         </div>
         <CartPriceNOption></CartPriceNOption>
