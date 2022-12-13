@@ -5,7 +5,6 @@ import { ReactComponent as LogoIcon } from "../../assets/svg/logo.svg";
 // import MenuIconArrange from "../MenuBar/MenuIconArrange";
 
 export default function MobileMenuBar(props) {
-  console.log(props);
   return (
     <div css={mobileStyle} onClick={props.onClick}>
       <LogoIcon css={logoStyle} />

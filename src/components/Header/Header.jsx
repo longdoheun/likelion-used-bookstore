@@ -13,7 +13,12 @@ export default function Header() {
   return (
     <AppLayout.Main>
       <div css={headerStyle}>
-        <LogoTitle css={LogoStyle} onClick={navigate("/")} />
+        <LogoTitle
+          css={LogoStyle}
+          onClick={() => {
+            navigate("/");
+          }}
+        />
         <SearchInput />
         <ProfileImg />
         <Bell css={iconStyle} />
