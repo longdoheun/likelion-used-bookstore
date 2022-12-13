@@ -6,12 +6,14 @@ import { ReactComponent as LogoTitle } from "../../assets/svg/logo_title.svg";
 import { ReactComponent as Bell } from "../../assets/svg/bell.svg";
 import ProfileImg from "./ProfileImg";
 import SearchInput from "../SearchInput/SearchInput";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
+  const naviagte = useNavigate();
   return (
     <AppLayout.Main>
       <div css={headerStyle}>
-        <LogoTitle css={LogoStyle} />
+        <LogoTitle css={LogoStyle} onClick={naviagte("/")} />
         <SearchInput />
         <ProfileImg />
         <Bell css={iconStyle} />
