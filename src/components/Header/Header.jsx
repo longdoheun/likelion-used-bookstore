@@ -9,11 +9,11 @@ import SearchInput from "../SearchInput/SearchInput";
 import { useNavigate } from "react-router-dom";
 
 export default function Header() {
-  const naviagte = useNavigate();
+  const navigate = useNavigate();
   return (
     <AppLayout.Main>
       <div css={headerStyle}>
-        <LogoTitle css={LogoStyle} onClick={naviagte("/")} />
+        <LogoTitle css={LogoStyle} onClick={navigate("/")} />
         <SearchInput />
         <ProfileImg />
         <Bell css={iconStyle} />
