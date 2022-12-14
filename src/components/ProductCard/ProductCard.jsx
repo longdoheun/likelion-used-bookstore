@@ -4,12 +4,12 @@ import React from "react";
 import AppLayout from "../AppLayout";
 import ProductDetail from "./ProductDetail";
 
-export default function ProductCard() {
+export default function ProductCard({ data }) {
   return (
     <AppLayout.Component>
       <div css={conStyle}>
         <div css={imgStyle}></div>
-        <ProductDetail />
+        <ProductDetail data={data} />
       </div>
     </AppLayout.Component>
   );

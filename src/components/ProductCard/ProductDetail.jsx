@@ -1,36 +1,38 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
+import { ReactComponent as CartIcon } from "../../assets/svg/add_shopping_cart.svg";
+import { ReactComponent as BuyIcon } from "../../assets/svg/shopping_bag.svg";
 import React from "react";
 import useNumWithComma from "../../hooks/useNumWithComma";
 import CartNumControl from "../CartBox/CartNumControl";
-import RoundBtn from "../RoundBtn/RoundBtn";
+import ProductBtn from "./ProductBtn";
 
 export default function ProductDetail({ data }) {
-  const stringifyNumber = useNumWithComma(50000);
+  const stringifyNumber = useNumWithComma(data.price);
 
   return (
     <div css={conStyle}>
-      <h1 css={tittleStyle}>소통의 기초 스피치와 토론</h1>
+      <h1 css={tittleStyle}>{data.title}</h1>
       <section css={marginStyle}>
-        <h5 css={infoStyle}>저자 : 성균관대학교 출판부 </h5>
+        <h5 css={infoStyle}>저자 : {data.authors} </h5>
         <h5 css={infoStyle}>출판사 : 성균관대학교 출판부</h5>
       </section>
-      <span css={marginStyle}>
+      <div css={marginStyle}>
         <number css={priceStyle}>{stringifyNumber} </number>
         <won css={wonStyle}>원</won>
-      </span>
+      </div>
       <section css={lineStyle}>
-        <h5 css={infoStyle}>과목명 : 스피치와 토론</h5>
-        <h5 css={infoStyle}>필수구매 : 권장사항</h5>
+        <h5 css={infoStyle}>과목명 : {data.subject}</h5>
+        <h5 css={infoStyle}>교재구매 : {data.mandatory}</h5>
       </section>
       <section css={optionStyle}>
-        <h5 css={infoStyle}>[옵션 A] 품질/등급 정보 </h5>
+        <h5 css={infoStyle}>[옵션 {data.rank}] 품질/등급 정보 </h5>
         <h5 css={rankStyle}>・새 것에 가까운 책</h5>
         <h5 css={rankStyle}>・변색 찢어진 흔적 없음</h5>
         <h5 css={rankStyle}>・닳은 흔적, 낙서, 얼룩 없음</h5>
       </section>
       <section css={optionStyle}>
-        <h5 css={infoStyle}>[SKKU] 소통의 기초 스피치와 토론</h5>
+        <h5 css={infoStyle}>[SKKU] {data.title}</h5>
         <span css={flexStyle}>
           <h5 css={infoStyle}>옵션</h5>
           <CartNumControl />
@@ -40,20 +42,29 @@ export default function ProductDetail({ data }) {
           <CartNumControl />
         </span>
       </section>
-      <span css={flexStyle}>
+      <span css={css(flexStyle, marginStyle)}>
         <h5 css={infoStyle}>합계</h5>
         <span css={totalPriceStyle}>{stringifyNumber} 원</span>
       </span>
-      <section css={flexStyle}>
-        <RoundBtn contents={"CART"} />
-        <RoundBtn contents={"BUY"} />
+      <section css={css(flexStyle, marginStyle)}>
+        <ProductBtn content={"CART"} children={<CartIcon css={IconStyle} />} />
+        <ProductBtn content={"BUY"} children={<BuyIcon css={IconStyle} />} />
       </section>
     </div>
   );
 }
+
+const IconStyle = css`
+  width: 18px;
+  height: 18px;
+  & path {
+    fill: #fff;
+  }
+`;
 const conStyle = css`
   /* background-color: red; */
   width: 500px;
+  margin-top: 20px;
 `;
 
 const marginStyle = css`

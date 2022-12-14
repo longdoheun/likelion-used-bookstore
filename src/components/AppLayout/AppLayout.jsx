@@ -41,7 +41,7 @@ const sidebarStyle = css`
 `;
 
 const componentStyle = css`
-  padding: 40px 40px;
+  padding: 43px 68px;
   background: #ffffff;
   box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
   border-radius: 20px;

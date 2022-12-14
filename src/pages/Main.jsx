@@ -6,6 +6,7 @@ import BookCardSlot from "../components/BookCardSlot";
 import Banner from "../components/Banner";
 import AppLayout from "../components/AppLayout";
 import Header from "../components/Header";
+import DummyData from "../dummy/dummy";
 
 export default function Main() {
   const navigate = useNavigate();
@@ -64,14 +65,5 @@ const containerStyle = css`
   /* gap: 65px; */
   gap: 4.0625rem;
 `;
-
-const DummyData = {
-  product_id: "askdjlf183jskcf",
-  title: "소통의 기초 스피치와 토론",
-  authors: "성균관대학교 출판부",
-  conditions: "파손 없음",
-  rank: "A",
-  price: 5000,
-};
 
 const DummyList = [{}, {}, {}, {}, {}, {}].map((item) => DummyData);
