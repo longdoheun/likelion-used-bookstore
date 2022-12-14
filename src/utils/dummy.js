@@ -10,3 +10,13 @@ const DummyData = {
 };
 
 export default DummyData;
+
+const information = {
+  name: "김멋사",
+  email: "kimmutsa10@gmail.com",
+  major: "철학과",
+  class: 21,
+  semester: 4,
+};
+
+export { information };

@@ -6,7 +6,8 @@ import BookCardSlot from "../components/BookCardSlot";
 import Banner from "../components/Banner";
 import AppLayout from "../components/AppLayout";
 import Header from "../components/Header";
-import DummyData from "../dummy/dummy";
+import DummyData from "../utils/dummy";
+import Footer from "../components/Footer/Footer";
 
 export default function Main() {
   const navigate = useNavigate();
@@ -19,10 +20,12 @@ export default function Main() {
           <BookCardSlot
             bookCardlistName={"교양 서적"}
             bookCardList={DummyList}
+            column={6}
           />
           <BookCardSlot
             bookCardlistName={"전공 서적"}
             bookCardList={DummyList}
+            column={6}
           />
         </div>
       </AppLayout.Main>
@@ -54,6 +57,7 @@ export default function Main() {
       >
         payment page
       </div>
+      <Footer />
     </div>
   );
 }
