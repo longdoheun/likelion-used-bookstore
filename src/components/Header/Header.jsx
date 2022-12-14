@@ -28,7 +28,6 @@ export default function Header() {
 }
 
 const LogoStyle = css`
-  width: 185px;
   height: 50.73px;
 `;
 
@@ -36,9 +35,9 @@ const headerStyle = css`
   width: 100%;
   display: flex;
   flex-direction: row;
-  gap: 15px;
-  /* justify-content: space-between; */
-  align-items: center;
+  /* gap: 15px; */
+  justify-content: space-between;
+  /* align-items: center; */
   margin-top: 81px;
   margin-bottom: 63.7px;
 `;

@@ -15,15 +15,20 @@ function Main({ children }) {
   return <main css={mainStyle}>{children}</main>;
 }
 
+function Component({ children }) {
+  return <section css={componentStyle}>{children}</section>;
+}
+
 AppLayout.Side = Side;
 AppLayout.Main = Main;
+AppLayout.Component = Component;
 
 const sidebarStyle = css`
   z-index: 3;
   position: fixed;
   ${media.laptopXL} {
     margin-top: 81px;
-    margin-left: 50px;
+    margin-left: 30px;
   }
   ${media.laptopS} {
     margin-left: 24px;
@@ -35,15 +40,14 @@ const sidebarStyle = css`
   }
 `;
 
+const componentStyle = css`
+  padding: 40px 40px;
+  background: #ffffff;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+`;
+
 const mainStyle = css`
-  position: relative;
-  ${media.laptopXL} {
-    margin: 0 50px;
-  }
-  ${media.laptopS} {
-    margin: 0 24px;
-  }
-  ${media.mobile} {
-    margin: 0 16px;
-  }
+  margin: auto;
+  max-width: 1200px;
 `;

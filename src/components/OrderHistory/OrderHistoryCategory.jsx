@@ -17,35 +17,35 @@ export default function OrderHistoryCategory() {
 }
 
 const containerStyle = css`
-    width: 1233px;
-    height: 35px;
-    display: grid;
-    grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
-    align-items: center;
-    color: #CDAC01;
-    text-align: center;
-    border-top: 2px solid #CDAC01;
-    border-bottom: 2px solid #CDAC01;
-    margin-bottom: 20px;
+  /* width: 1233px; */
+  height: 35px;
+  display: grid;
+  grid-template-columns: 3fr 1fr 1fr 1fr 1fr;
+  align-items: center;
+  color: #cdac01;
+  text-align: center;
+  border-top: 2px solid #cdac01;
+  border-bottom: 2px solid #cdac01;
+  margin-bottom: 20px;
 `;
 
 const bookInfoStyle = css`
-    width: 340px;
-    padding-left: 54px;
-`
+  width: 340px;
+  padding-left: 54px;
+`;
 
 const orderDateStyle = css`
-    width: 110px;
-`
+  width: 110px;
+`;
 
 const orderNumberStyle = css`
-    width: 110px;
-`
+  width: 110px;
+`;
 
 const orderPriceStyle = css`
-    width: 110px;
-`
+  width: 110px;
+`;
 
 const orderStatusStyle = css`
-    width: 110px;
-`
+  width: 110px;
+`;
