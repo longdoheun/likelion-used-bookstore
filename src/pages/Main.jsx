@@ -6,11 +6,14 @@ import BookCardSlot from "../components/BookCardSlot";
 import Banner from "../components/Banner";
 import AppLayout from "../components/AppLayout";
 import Header from "../components/Header";
-import DummyData from "../utils/dummy";
 import Footer from "../components/Footer/Footer";
+import useFetch from "../hooks/useFetch";
 
 export default function Main() {
   const navigate = useNavigate();
+  const majorData = useFetch("book", "division", "major");
+  const generalData = useFetch("book", "division", "general");
+
   return (
     <div>
       <Header />
@@ -19,23 +22,17 @@ export default function Main() {
         <div css={containerStyle}>
           <BookCardSlot
             bookCardlistName={"교양 서적"}
-            bookCardList={DummyList}
+            bookCardList={generalData}
             column={6}
           />
           <BookCardSlot
             bookCardlistName={"전공 서적"}
-            bookCardList={DummyList}
+            bookCardList={majorData}
             column={6}
           />
         </div>
       </AppLayout.Main>
-      <div
-        onClick={() => {
-          navigate("/login");
-        }}
-      >
-        login page
-      </div>
+      <div onClick={() => {}}>login page</div>
       <div
         onClick={() => {
           navigate("/Signin");
@@ -69,5 +66,3 @@ const containerStyle = css`
   /* gap: 65px; */
   gap: 4.0625rem;
 `;
-
-const DummyList = [{}, {}, {}, {}, {}, {}].map((item) => DummyData);

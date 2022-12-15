@@ -6,10 +6,13 @@ import BookCardSlot from "../components/BookCardSlot";
 import CategoryBar from "../components/CategoryBar";
 import Footer from "../components/Footer/Footer";
 import Header from "../components/Header";
+import useFetch from "../hooks/useFetch";
 import { generalArr, majorArr } from "../utils/catergory";
 import DummyData from "../utils/dummy";
 
 export default function Products() {
+  const queryData = useFetch("book");
+
   return (
     <>
       <Header />
@@ -20,7 +23,7 @@ export default function Products() {
             <CategoryBar fraction={"교양영역별"} categoryArr={generalArr} />
           </section>
           <section css={wrapper}>
-            <BookCardSlot bookCardList={DummyList} column={5} />
+            <BookCardSlot bookCardList={queryData} column={5} />
           </section>
         </div>
       </AppLayout.Main>

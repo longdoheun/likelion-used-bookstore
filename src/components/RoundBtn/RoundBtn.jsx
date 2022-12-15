@@ -1,9 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function RoundBtn({ contents }) {
-  return <div css={btnStyle}>{contents}</div>;
+  const navigate = useNavigate();
+  return (
+    <div
+      css={btnStyle}
+      onClick={() => {
+        navigate("/products");
+      }}
+    >
+      {contents}
+    </div>
+  );
 }
 
 const btnStyle = css`

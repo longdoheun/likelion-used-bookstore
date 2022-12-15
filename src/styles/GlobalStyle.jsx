@@ -47,4 +47,8 @@ const style = css`
     border: none;
     color: #403600;
   }
+
+  em {
+    font-style: normal;
+  }
 `;

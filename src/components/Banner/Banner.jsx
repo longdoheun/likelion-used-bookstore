@@ -10,7 +10,7 @@ export default function Banner() {
       <div css={titleStyle}>
         <h3 css={h3Style}>성균관대학교 유생들을 위한 중고 책 거래 플랫폼,</h3>
         <h1 css={h1Style}>
-          <empty css={emptyStyle}>유생책방</empty>에 오신 것을 환영합니다
+          <em css={emptyStyle}>유생책방</em>에 오신 것을 환영합니다
         </h1>
       </div>
     </div>
@@ -60,6 +60,7 @@ const h1Style = css`
 
 const emptyStyle = css`
   color: #ffd742;
+  font-style: normal;
 `;
 
 const titleStyle = css`

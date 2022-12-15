@@ -6,9 +6,15 @@ import React from "react";
 import useNumWithComma from "../../hooks/useNumWithComma";
 import CartNumControl from "../CartBox/CartNumControl";
 import ProductBtn from "./ProductBtn";
+import { useEffect } from "react";
 
 export default function ProductDetail({ data }) {
-  const stringifyNumber = useNumWithComma(data.price);
+  console.log(data.price);
+  const [stringifyNumber, setStringifyNumber] = useNumWithComma();
+
+  useEffect(() => {
+    setStringifyNumber(data.price);
+  }, [data]);
 
   return (
     <div css={conStyle}>
@@ -18,8 +24,8 @@ export default function ProductDetail({ data }) {
         <h5 css={infoStyle}>출판사 : 성균관대학교 출판부</h5>
       </section>
       <div css={marginStyle}>
-        <number css={priceStyle}>{stringifyNumber} </number>
-        <won css={wonStyle}>원</won>
+        <em css={priceStyle}>{stringifyNumber} </em>
+        <em css={wonStyle}>원</em>
       </div>
       <section css={lineStyle}>
         <h5 css={infoStyle}>과목명 : {data.subject}</h5>
@@ -42,7 +48,8 @@ export default function ProductDetail({ data }) {
           <CartNumControl />
         </span>
       </section>
-      <span css={css(flexStyle, marginStyle)}>
+      <h5 css={css(infoStyle, marginStyle)}>잔여수량 : {data.remaining}개</h5>
+      <span css={css(flexStyle)}>
         <h5 css={infoStyle}>합계</h5>
         <span css={totalPriceStyle}>{stringifyNumber} 원</span>
       </span>

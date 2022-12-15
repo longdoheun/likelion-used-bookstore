@@ -8,7 +8,7 @@ export default function ProductCard({ data }) {
   return (
     <AppLayout.Component>
       <div css={conStyle}>
-        <div css={imgStyle}></div>
+        <div css={imgStyle(data.imgUrl)}></div>
         <ProductDetail data={data} />
       </div>
     </AppLayout.Component>
@@ -20,8 +20,10 @@ const conStyle = css`
   justify-content: space-between;
 `;
 
-const imgStyle = css`
+const imgStyle = (imgUrl) => css`
   width: 464px;
   height: 571px;
   background: #c7c7c7;
+  background-image: url(${imgUrl});
+  background-size: cover;
 `;

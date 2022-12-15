@@ -23,7 +23,9 @@ export default function CategoryBar({ fraction, categoryArr }) {
       {isOpen && (
         <div css={wrap}>
           {categoryArr.map((category) => (
-            <div css={categoryStyle}>{category}</div>
+            <div key={category} css={categoryStyle}>
+              {category}
+            </div>
           ))}
         </div>
       )}

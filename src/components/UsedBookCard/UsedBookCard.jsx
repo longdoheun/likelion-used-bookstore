@@ -10,7 +10,7 @@ export default function UsedBookCard(props) {
   return (
     <div css={UsedBookCardStyle}>
       <CartButton />
-      <UsedBookImage />
+      <UsedBookImage url={data.imgUrl} />
       <UsedBookStatus data={data} />
     </div>
   );

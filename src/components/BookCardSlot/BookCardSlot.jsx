@@ -16,7 +16,7 @@ export default function BookCardSlot(props) {
       )}
       <div css={gridStyle(column)}>
         {bookCardList.map((bookCardData) => (
-          <UsedBookCard key={bookCardData.product_id} data={bookCardData} />
+          <UsedBookCard key={bookCardData.id} data={bookCardData} />
         ))}
       </div>
     </div>
