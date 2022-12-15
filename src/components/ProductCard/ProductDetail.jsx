@@ -108,7 +108,6 @@ const tittleStyle = css`
   font-weight: 700;
   font-size: 32px;
   line-height: 35px;
-  /* text-align: center; */
   color: #403600;
 `;
 
