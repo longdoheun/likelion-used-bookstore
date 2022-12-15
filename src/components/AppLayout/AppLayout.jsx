@@ -49,5 +49,5 @@ const componentStyle = css`
 
 const mainStyle = css`
   margin: auto;
-  max-width: 1200px;
+  width: 1200px;
 `;

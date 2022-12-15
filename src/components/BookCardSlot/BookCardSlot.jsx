@@ -22,6 +22,7 @@ export default function BookCardSlot(props) {
     </div>
   );
 }
+
 const slotTopStyle = css`
   display: flex;
   justify-content: space-between;

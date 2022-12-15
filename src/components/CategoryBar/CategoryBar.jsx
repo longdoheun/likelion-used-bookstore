@@ -4,10 +4,19 @@ import React from "react";
 import { useState } from "react";
 import { ReactComponent as PlusBtn } from "../../assets/svg/plus.svg";
 import { ReactComponent as MinusBtn } from "../../assets/svg/minusFilled.svg";
-export default function CategoryBar({ fraction, categoryArr }) {
+export default function CategoryBar({ fraction, categoryArr, setQuery }) {
   const [isOpen, setIsOpen] = useState(true);
+
   const toggleState = () => {
     setIsOpen(!isOpen);
+  };
+
+  const changeQuery = (e) => {
+    console.dir(e.target.innerText);
+    setQuery({
+      field: "category",
+      value: e.target.innerText,
+    });
   };
 
   return (
@@ -23,7 +32,7 @@ export default function CategoryBar({ fraction, categoryArr }) {
       {isOpen && (
         <div css={wrap}>
           {categoryArr.map((category) => (
-            <div key={category} css={categoryStyle}>
+            <div key={category} css={categoryStyle} onClick={changeQuery}>
               {category}
             </div>
           ))}
@@ -55,7 +64,7 @@ const wrap = css`
   margin-top: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  /* justify-content: center; */
   height: 400px;
   overflow-y: scroll;
   border-radius: 8px;

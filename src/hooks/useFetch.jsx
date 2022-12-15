@@ -1,24 +1,16 @@
-import {
-  getDocs,
-  where,
-  collectionGroup,
-  collection,
-  query,
-  limit,
-} from "firebase/firestore";
+import { getDocs, where, collection, query, limit } from "firebase/firestore";
 import { db } from "../utils/firebase_config";
-import { useState } from "react";
-import { useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 
 export default function useFetch(collectionName, field, fieldValue) {
   const [value, setValue] = useState([]);
   const docRef = collection(db, collectionName);
 
-  let selctedQuery;
+  let selectedQuery;
 
   switch (field) {
     case "division":
-      selctedQuery = query(
+      selectedQuery = query(
         docRef,
         where("division", "==", fieldValue),
         limit(6)
@@ -26,7 +18,7 @@ export default function useFetch(collectionName, field, fieldValue) {
       break;
 
     case "category":
-      selctedQuery = query(
+      selectedQuery = query(
         docRef,
         where("category", "==", fieldValue),
         limit(30)
@@ -34,12 +26,12 @@ export default function useFetch(collectionName, field, fieldValue) {
       break;
 
     default:
-      selctedQuery = query(docRef, limit(30));
+      selectedQuery = query(docRef, limit(30));
   }
 
-  const fetchGroup = async () => {
+  const fetchGroup = useCallback(async () => {
     try {
-      const querySnapShot = await getDocs(selctedQuery);
+      const querySnapShot = await getDocs(selectedQuery);
       const response = querySnapShot.docs.map((doc) => {
         return { ...doc.data(), id: doc.id };
       });
@@ -47,11 +39,11 @@ export default function useFetch(collectionName, field, fieldValue) {
     } catch (err) {
       console.log("fetch error", err);
     }
-  };
+  }, [selectedQuery]);
 
   useEffect(() => {
     fetchGroup();
-  }, []);
+  }, [selectedQuery]);
 
   return value;
 }
