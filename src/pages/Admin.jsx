@@ -47,9 +47,10 @@ export default function Admin() {
     const docRef = collection(db, "book");
     try {
       const postRef = await addDoc(docRef, postData);
-      console.log("Document written with ID: ", postRef.id);
+      alert(`Document written with ID: ${postRef.id}`);
+      window.location.reload();
     } catch (err) {
-      console.log("error message", err);
+      alert(`error message: ${err}`);
     }
   };
 

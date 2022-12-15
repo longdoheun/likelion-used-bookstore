@@ -34,7 +34,7 @@ export default function useFetch(collectionName, field, fieldValue) {
       break;
 
     default:
-      selctedQuery = docRef;
+      selctedQuery = query(docRef, limit(30));
   }
 
   const fetchGroup = async () => {
