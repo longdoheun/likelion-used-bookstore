@@ -39,10 +39,10 @@ export default function ProductDetail({ data }) {
       </section>
       <section css={optionStyle}>
         <h5 css={infoStyle}>[SKKU] {data.title}</h5>
-        <span css={flexStyle}>
+        {/* <span css={flexStyle}>
           <h5 css={infoStyle}>옵션</h5>
           <CartNumControl />
-        </span>
+        </span> */}
         <span css={flexStyle}>
           <h5 css={infoStyle}>수량</h5>
           <CartNumControl />
