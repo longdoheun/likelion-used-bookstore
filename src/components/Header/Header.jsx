@@ -1,15 +1,40 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import AppLayout from "../AppLayout/AppLayout";
 import { ReactComponent as LogoTitle } from "../../assets/svg/logo_title.svg";
 import { ReactComponent as Bell } from "../../assets/svg/bell.svg";
 import ProfileImg from "./ProfileImg";
 import SearchInput from "../SearchInput/SearchInput";
 import { useNavigate } from "react-router-dom";
+import RoundBtn from "../RoundBtn/RoundBtn";
+import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
 
 export default function Header() {
+  const auth = getAuth();
   const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(auth.currentUser);
+
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsLoggedIn(true);
+      } else {
+        setIsLoggedIn(false);
+      }
+    });
+  }, []);
+
+  const logOut = async () => {
+    navigate("/");
+    try {
+      await signOut(auth);
+      alert("user signed out");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <AppLayout.Main>
       <div css={headerStyle}>
@@ -20,8 +45,14 @@ export default function Header() {
           }}
         />
         <SearchInput />
-        <ProfileImg />
-        <Bell css={iconStyle} />
+        {isLoggedIn ? (
+          <>
+            <ProfileImg handler={logOut} />
+            <Bell css={iconStyle} />
+          </>
+        ) : (
+          <RoundBtn.Login contents={"로그인"} />
+        )}
       </div>
     </AppLayout.Main>
   );
@@ -37,7 +68,7 @@ const headerStyle = css`
   flex-direction: row;
   /* gap: 15px; */
   justify-content: space-between;
-  /* align-items: center; */
+  align-items: center;
   margin-top: 81px;
   margin-bottom: 63.7px;
 `;

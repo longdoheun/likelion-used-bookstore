@@ -30,20 +30,23 @@ export default function useFetch(collectionName, field, fieldValue) {
   }
 
   const fetchGroup = useCallback(async () => {
-    try {
-      const querySnapShot = await getDocs(selectedQuery);
-      const response = querySnapShot.docs.map((doc) => {
-        return { ...doc.data(), id: doc.id };
-      });
-      setValue(response);
-    } catch (err) {
-      console.log("fetch error", err);
+    if (selectedQuery) {
+      try {
+        const querySnapShot = await getDocs(selectedQuery);
+        const response = querySnapShot.docs.map((doc) => {
+          return { ...doc.data(), id: doc.id };
+        });
+        setValue(response);
+        console.log("fetch docs");
+      } catch (err) {
+        console.log("fetch error", err);
+      }
     }
   }, [selectedQuery]);
 
   useEffect(() => {
     fetchGroup();
-  }, [selectedQuery]);
+  }, [field, fieldValue]);
 
   return value;
 }

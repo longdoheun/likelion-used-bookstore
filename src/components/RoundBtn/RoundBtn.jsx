@@ -16,6 +16,22 @@ export default function RoundBtn({ contents }) {
     </div>
   );
 }
+function Login({ contents }) {
+  const navigate = useNavigate();
+
+  return (
+    <section
+      css={css(btnStyle, loginStyle)}
+      onClick={() => {
+        navigate("/login");
+      }}
+    >
+      {contents}
+    </section>
+  );
+}
+
+RoundBtn.Login = Login;
 
 const btnStyle = css`
   /* height: 22px; */
@@ -30,4 +46,8 @@ const btnStyle = css`
   line-height: normal;
   /* identical to box height */
   color: #ffffff;
+`;
+
+const loginStyle = css`
+  padding: 4px 20px;
 `;

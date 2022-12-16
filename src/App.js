@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-// import { css } from "@emotion/react";
+import { css } from "@emotion/react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
 import MenuBar from "./components/MenuBar";
@@ -29,7 +29,7 @@ function App() {
   }, [location]);
 
   return (
-    <div className="App">
+    <div className="App" css={AppStyle}>
       {isInvaildPath ? null : (
         <AppLayout.Side>
           {isClicked && <MenuBar />}
@@ -62,12 +62,9 @@ function App() {
   );
 }
 
-// const style = css`
-//   display: flex;
-//   flex-direction: column;
-//   justify-content: center;
-//   align-items: center;
-//   width: 100%;
-// `;
+const AppStyle = css`
+  height: 100%;
+  width: 100%;
+`;
 
 export default App;

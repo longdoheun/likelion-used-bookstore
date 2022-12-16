@@ -1,17 +1,17 @@
 import { useState, useEffect } from "react";
 
-export default function useNumWithComma() {
-  const [num, setNum] = useState(null);
+export default function useNumWithComma(defultValue) {
+  const [num, setNum] = useState("");
 
   useEffect(() => {
-    if (num) {
-      if (typeof num === "number") {
-        setNum(num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+    if (defultValue) {
+      if (typeof defultValue === "number") {
+        setNum(defultValue.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
       } // else {
       //   setNum(num.replace(/\B(?=(\d{3})+(?!\d))/g, ","));
       // }
     }
-  }, [num]);
+  }, [defultValue]);
 
-  return [num, setNum];
+  return num;
 }

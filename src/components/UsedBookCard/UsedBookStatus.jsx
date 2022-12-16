@@ -1,18 +1,18 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 import React from "react";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useNumWithComma from "../../hooks/useNumWithComma";
 
 export default function UsedBookStatus(props) {
   const { data } = props;
   const navigate = useNavigate();
-  const [stringifyNumber, setStringifyNumber] = useNumWithComma();
+  const stringifyNumber = useNumWithComma(data.price);
 
-  useEffect(() => {
-    setStringifyNumber(data.price);
-  }, [data]);
+  // useEffect(() => {
+  //   setStringifyNumber(data.price);
+  // }, [data]);
 
   return (
     <div

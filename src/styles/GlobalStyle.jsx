@@ -15,6 +15,8 @@ const style = css`
   }
 
   html {
+    width: 100%;
+    height: 100%;
     ${media.laptopL} {
       font-size: 100%;
     }
@@ -28,8 +30,15 @@ const style = css`
   }
 
   body {
+    width: 100%;
+    height: 100%;
     box-sizing: border-box;
     background-color: #f9f7f3;
+  }
+
+  #root {
+    width: 100%;
+    height: 100%;
   }
 
   input::placeholder {

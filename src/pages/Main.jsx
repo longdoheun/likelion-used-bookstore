@@ -32,7 +32,13 @@ export default function Main() {
           />
         </div>
       </AppLayout.Main>
-      <div onClick={() => {}}>login page</div>
+      <div
+        onClick={() => {
+          navigate("/login");
+        }}
+      >
+        login page
+      </div>
       <div
         onClick={() => {
           navigate("/Signin");

@@ -6,15 +6,14 @@ import React from "react";
 import useNumWithComma from "../../hooks/useNumWithComma";
 import CartNumControl from "../CartBox/CartNumControl";
 import ProductBtn from "./ProductBtn";
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { rankSystem } from "../../utils/rankSystem";
+import useCounter from "../../hooks/useCounter";
 
 export default function ProductDetail({ data }) {
-  console.log(data.price);
-  const [stringifyNumber, setStringifyNumber] = useNumWithComma();
-
-  useEffect(() => {
-    setStringifyNumber(data.price);
-  }, [data]);
+  const stringPrice = useNumWithComma(data.price);
+  const [quantity, setPlus, setMinus] = useCounter(data.remaining);
+  const stringTotal = useNumWithComma(data.price * quantity);
 
   return (
     <div css={conStyle}>
@@ -24,7 +23,7 @@ export default function ProductDetail({ data }) {
         <h5 css={infoStyle}>출판사 : 성균관대학교 출판부</h5>
       </section>
       <div css={marginStyle}>
-        <em css={priceStyle}>{stringifyNumber} </em>
+        <em css={priceStyle}>{stringPrice} </em>
         <em css={wonStyle}>원</em>
       </div>
       <section css={lineStyle}>
@@ -33,21 +32,25 @@ export default function ProductDetail({ data }) {
       </section>
       <section css={optionStyle}>
         <h5 css={infoStyle}>[옵션 {data.rank}] 품질/등급 정보 </h5>
-        <h5 css={rankStyle}>・새 것에 가까운 책</h5>
-        <h5 css={rankStyle}>・변색 찢어진 흔적 없음</h5>
-        <h5 css={rankStyle}>・닳은 흔적, 낙서, 얼룩 없음</h5>
+        {data.rank
+          ? rankSystem[data.rank].map((info) => (
+              <h5 key={info} css={rankStyle}>
+                {info}
+              </h5>
+            ))
+          : null}
       </section>
       <section css={optionStyle}>
         <h5 css={infoStyle}>[SKKU] {data.title}</h5>
         <span css={flexStyle}>
           <h5 css={infoStyle}>수량</h5>
-          <CartNumControl />
+          <CartNumControl quantity={quantity} plus={setPlus} minus={setMinus} />
         </span>
       </section>
       <h5 css={css(infoStyle, marginStyle)}>잔여수량 : {data.remaining}개</h5>
       <span css={css(flexStyle)}>
         <h5 css={infoStyle}>합계</h5>
-        <span css={totalPriceStyle}>{stringifyNumber} 원</span>
+        <span css={totalPriceStyle}>{stringTotal} 원</span>
       </span>
       <section css={css(flexStyle, marginStyle)}>
         <ProductBtn content={"CART"} children={<CartIcon css={IconStyle} />} />
