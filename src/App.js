@@ -1,8 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { Route, Routes, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
-import MenuBar from "./components/MenuBar";
+import { Route, Routes } from "react-router-dom";
 import Admin from "./pages/Admin";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
@@ -13,47 +11,27 @@ import Payment from "./pages/Payment";
 import Products from "./pages/Products";
 import ProductsDetail from "./pages/ProductsDetail";
 import SignIn from "./pages/SignIn";
-import AppLayout from "./components/AppLayout";
-import MobileMenuBar from "./components/MobileMenuBar";
+import MainLayout from "./components/MainLayout/MainLayout";
 
 function App() {
-  const [isClicked, setIsClicked] = useState(false);
-  const [isInvaildPath, setIsInvaildPath] = useState(false);
-  const location = useLocation();
-
-  useEffect(() => {
-    const blaklistedPaths = ["/login", "/signin"];
-    setIsInvaildPath(
-      blaklistedPaths.find((path) => path === location.pathname)
-    );
-  }, [location]);
-
   return (
     <div className="App" css={AppStyle}>
-      {isInvaildPath ? null : (
-        <AppLayout.Side>
-          {isClicked && <MenuBar />}
-          <MobileMenuBar
-            onClick={() => {
-              setIsClicked(isClicked ? false : true);
-            }}
-          />
-        </AppLayout.Side>
-      )}
       <Routes>
-        <Route path="/" element={<Main />}></Route>
+        <Route element={<MainLayout />}>
+          <Route path="/" element={<Main />}></Route>
+          <Route path="/mypage" element={<MyPage />}></Route>
+          <Route path="/cart" element={<Cart />}></Route>
+          <Route path="/products" element={<Products />}></Route>
+          <Route
+            path="/products/:product_id"
+            element={<ProductsDetail />}
+          ></Route>
+          <Route
+            path="/products/:product_id/payment"
+            element={<Payment />}
+          ></Route>
+        </Route>
         <Route path="/admin" element={<Admin />}></Route>
-        <Route path="/mypage" element={<MyPage />}></Route>
-        <Route path="/products" element={<Products />}></Route>
-        <Route path="/cart" element={<Cart />}></Route>
-        <Route
-          path="/products/:product_id"
-          element={<ProductsDetail />}
-        ></Route>
-        <Route
-          path="/products/:product_id/payment"
-          element={<Payment />}
-        ></Route>
         <Route path="/signin" element={<SignIn />}></Route>
         <Route path="/login" element={<Login />}></Route>
         <Route path="*" element={<NotFound />}></Route>

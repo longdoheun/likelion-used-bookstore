@@ -4,9 +4,10 @@ import { useState, useEffect, useCallback } from "react";
 
 export default function useFetchDoc(collectionName, docId) {
   const [value, setValue] = useState({});
-  const docRef = doc(db, collectionName, docId);
 
+  console.log(collectionName, docId);
   const fetchDoc = useCallback(async () => {
+    const docRef = doc(db, collectionName, docId);
     try {
       const docSnap = await getDoc(docRef);
       if (docSnap.exists()) {
@@ -18,11 +19,13 @@ export default function useFetchDoc(collectionName, docId) {
     } catch (err) {
       console.log("fetch error", err);
     }
-  }, [docRef, docId]);
+  }, [collectionName, docId]);
 
   useEffect(() => {
-    fetchDoc();
-  }, []);
+    if (docId) {
+      fetchDoc();
+    }
+  }, [docId]);
 
   return value;
 }

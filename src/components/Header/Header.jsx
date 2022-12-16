@@ -1,31 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import React, { useState, useEffect } from "react";
 import AppLayout from "../AppLayout/AppLayout";
 import { ReactComponent as LogoTitle } from "../../assets/svg/logo_title.svg";
 import { ReactComponent as Bell } from "../../assets/svg/bell.svg";
-import ProfileImg from "./ProfileImg";
 import SearchInput from "../SearchInput/SearchInput";
 import { useNavigate } from "react-router-dom";
 import RoundBtn from "../RoundBtn/RoundBtn";
-import { getAuth, onAuthStateChanged, signOut } from "firebase/auth";
+import { getAuth, signOut } from "firebase/auth";
+import useLogin from "../../hooks/useLogin";
 
 export default function Header() {
-  const auth = getAuth();
   const navigate = useNavigate();
-  const [isLoggedIn, setIsLoggedIn] = useState(auth.currentUser);
-
-  useEffect(() => {
-    onAuthStateChanged(auth, (user) => {
-      if (user) {
-        setIsLoggedIn(true);
-      } else {
-        setIsLoggedIn(false);
-      }
-    });
-  }, []);
+  const userData = useLogin();
 
   const logOut = async () => {
+    const auth = getAuth();
     navigate("/");
     try {
       await signOut(auth);
@@ -45,9 +34,10 @@ export default function Header() {
           }}
         />
         <SearchInput />
-        {isLoggedIn ? (
+        {userData ? (
           <>
-            <ProfileImg handler={logOut} />
+            <div css={ProfileStyle(userData.profileUrl)} onClick={logOut}></div>
+            {/* <ProfileImg data={userData} handler={logOut} /> */}
             <Bell css={iconStyle} />
           </>
         ) : (
@@ -57,6 +47,14 @@ export default function Header() {
     </AppLayout.Main>
   );
 }
+const ProfileStyle = (url) => css`
+  width: 40px;
+  height: 40px;
+  background: #d9d9d9;
+  background-image: url(${url});
+  background-size: cover;
+  border-radius: 50%;
+`;
 
 const LogoStyle = css`
   height: 50.73px;

@@ -1,44 +1,51 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import React from "react";
-import CartBox from "../components/CartBox";
-import CartBuyBox from "../components/CartBox/CartBuyBox";
 import AppLayout from "../components/AppLayout";
-import CartBuyNow from "../components/CartBuyNow";
-import Header from "../components/Header";
+import CartBuyFooter from "../components/CartBuyFooter";
+import CartHead from "../components/CartHead";
+import CartElement from "../components/CartElement/CartElement";
+import useFetch from "../hooks/useFetch";
+import useLogin from "../hooks/useLogin";
+import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 
 export default function Cart() {
+  const userData = useLogin();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!userData) {
+      navigate("/login");
+    }
+  }, []);
+
+  const cartData = useFetch(`user/${userData.uid}/cart`);
+  // const [cartData, setCartData] = useState([]);
+
+  // useEffect(() => {
+  //   setCartData(data);
+  // }, [data]);
+
   return (
     <>
-      <Header></Header>
-      {/* <div css={wrap}> */}
       <AppLayout.Main>
-        <CartBox cartList={DummyList}></CartBox>
+        <CartHead cartNum={cartData.length} />
+        {/* <AppLayout.Component> */}
+        <section css={cartListBox}>
+          {cartData.map((data) => (
+            <CartElement key={data.id} data={data}></CartElement>
+          ))}
+        </section>
+        {/* </AppLayout.Component> */}
       </AppLayout.Main>
-      {/* </div> */}
-      <CartBuyBox></CartBuyBox>
-      <CartBuyNow></CartBuyNow>
+      <CartBuyFooter></CartBuyFooter>
     </>
   );
 }
 
-const wrap = css`
-  padding-left: 160px;
+const cartListBox = css`
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: auto;
-  min-height: 100%;
-  padding-bottom: 85px;
+  gap: 30px;
 `;
-
-const DummyData = {
-  product_id: "askdjlf183jskcf",
-  title: "소통의 기초 스피치와 토론",
-  authors: "성균관대학교 출판부",
-  conditions: "파손 없음",
-  rank: "A",
-  price: 5000,
-};
-
-const DummyList = [{}, {}, {}, {}, {}, {}].map((item) => DummyData);

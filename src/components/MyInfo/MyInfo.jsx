@@ -12,19 +12,12 @@ export default function OrderHistory(props) {
         <p css={editButtonStyle}>내 정보 수정▶</p>
       </div>
       <div css={infoWrapStyle}>
-        <img
-          css={profileImgStyle}
-          src={profileImg}
-          alt=""
-          width="124"
-          height="124"
-        ></img>
+        <div css={profileImgStyle(myInfo.profileUrl)}></div>
         <section>
           <h3 css={nameStyle}>{myInfo.name}</h3>
           <p css={infoStyle}>{myInfo.email}</p>
-          <p css={infoStyle}>
-            성균관대학교 {myInfo.major} {myInfo.class}학번
-          </p>
+          <p css={infoStyle}>성균관대학교 {myInfo.major}</p>
+          <p css={infoStyle}>학번 | {myInfo.studentId}</p>
           <p css={infoStyle}>{myInfo.semester}학기 재학중</p>
         </section>
       </div>
@@ -57,7 +50,12 @@ const editButtonStyle = css`
   cursor: pointer;
 `;
 
-const profileImgStyle = css`
+const profileImgStyle = (url) => css`
+  background-color: #dedede;
+  background-image: url(${url});
+  background-size: cover;
+  width: 124px;
+  height: 124px;
   border-radius: 30px;
   margin-right: 10px;
 `;
@@ -69,4 +67,5 @@ const nameStyle = css`
 const infoStyle = css`
   font-size: 14px;
   color: #666666;
+  margin-top: 2px;
 `;

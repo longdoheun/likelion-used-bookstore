@@ -5,8 +5,6 @@ import React from "react";
 import BookCardSlot from "../components/BookCardSlot";
 import Banner from "../components/Banner";
 import AppLayout from "../components/AppLayout";
-import Header from "../components/Header";
-import Footer from "../components/Footer/Footer";
 import useFetch from "../hooks/useFetch";
 
 export default function Main() {
@@ -15,8 +13,7 @@ export default function Main() {
   const generalData = useFetch("book", "division", "general");
 
   return (
-    <div>
-      <Header />
+    <>
       <Banner />
       <AppLayout.Main>
         <div css={containerStyle}>
@@ -32,14 +29,7 @@ export default function Main() {
           />
         </div>
       </AppLayout.Main>
-      <div
-        onClick={() => {
-          navigate("/login");
-        }}
-      >
-        login page
-      </div>
-      <div
+      {/* <div
         onClick={() => {
           navigate("/Signin");
         }}
@@ -59,9 +49,8 @@ export default function Main() {
         }}
       >
         payment page
-      </div>
-      <Footer />
-    </div>
+      </div> */}
+    </>
   );
 }
 const containerStyle = css`

@@ -26,7 +26,7 @@ export default function LoginBlock() {
         password
       );
       console.log(userCredential);
-      navigate("/");
+      navigate(-1);
     } catch (error) {
       console.log(error);
     }

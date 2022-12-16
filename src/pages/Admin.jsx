@@ -15,6 +15,7 @@ export default function Admin() {
   const [subject, setSubject] = useInput();
   const [remaining, setRemaining] = useInput();
   const [price, setPrice] = useInput();
+  const [cost, setCost] = useInput();
   // selectBox
   const [mandatory, setMandatory] = useState("필수");
   const [division, setDivision] = useState("major");
@@ -29,6 +30,7 @@ export default function Admin() {
     authors: author,
     rank: rank,
     price: Number(price),
+    cost: Number(cost),
     mandatory: mandatory,
     subject: subject,
     category: category,
@@ -112,6 +114,15 @@ export default function Admin() {
         value={remaining}
         placeholder="수량"
         onChange={setRemaining}
+      />
+      <input
+        css={inputStyle}
+        autoComplete="off"
+        type="number"
+        name="name"
+        value={cost}
+        placeholder="정가"
+        onChange={setCost}
       />
       <input
         css={inputStyle}

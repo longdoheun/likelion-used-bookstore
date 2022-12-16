@@ -5,11 +5,21 @@ import React from "react";
 export default function CartNumControl({ quantity, plus, minus }) {
   return (
     <div css={bookNumStyle}>
-      <div css={editButton} onClick={minus}>
+      <div
+        css={editButton}
+        onClick={() => {
+          minus();
+        }}
+      >
         －
       </div>
       <div css={countStyle}>{quantity || 1}</div>
-      <div css={editButton} onClick={plus}>
+      <div
+        css={editButton}
+        onClick={() => {
+          plus();
+        }}
+      >
         ＋
       </div>
     </div>

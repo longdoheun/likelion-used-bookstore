@@ -1,9 +1,9 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-export default function ProductBtn({ content, children }) {
+export default function ProductBtn({ content, children, handler }) {
   return (
-    <div css={wrap}>
+    <div css={wrap} onClick={handler}>
       <p css={contentStyle}>{content}</p>
       {children}
     </div>

@@ -5,8 +5,6 @@ import { useState } from "react";
 import AppLayout from "../components/AppLayout";
 import BookCardSlot from "../components/BookCardSlot";
 import CategoryBar from "../components/CategoryBar";
-import Footer from "../components/Footer/Footer";
-import Header from "../components/Header";
 import useFetch from "../hooks/useFetch";
 import { generalArr, majorArr } from "../utils/catergory";
 
@@ -20,7 +18,6 @@ export default function Products() {
 
   return (
     <>
-      <Header />
       <AppLayout.Main>
         <div css={flexStyle}>
           <section>
@@ -40,7 +37,6 @@ export default function Products() {
           </section>
         </div>
       </AppLayout.Main>
-      <Footer />
     </>
   );
 }

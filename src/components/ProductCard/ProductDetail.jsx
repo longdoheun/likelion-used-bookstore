@@ -2,18 +2,55 @@
 import { css } from "@emotion/react";
 import { ReactComponent as CartIcon } from "../../assets/svg/add_shopping_cart.svg";
 import { ReactComponent as BuyIcon } from "../../assets/svg/shopping_bag.svg";
-import React from "react";
 import useNumWithComma from "../../hooks/useNumWithComma";
-import CartNumControl from "../CartBox/CartNumControl";
+import CartNumControl from "../CartElement/CartNumControl";
 import ProductBtn from "./ProductBtn";
-import { useEffect, useMemo, useState } from "react";
 import { rankSystem } from "../../utils/rankSystem";
 import useCounter from "../../hooks/useCounter";
+import useLogin from "../../hooks/useLogin";
+import { useNavigate } from "react-router-dom";
+import { collection, addDoc, doc } from "firebase/firestore";
+import { db } from "../../utils/firebase_config";
 
 export default function ProductDetail({ data }) {
+  const navigate = useNavigate();
+  const userData = useLogin();
   const stringPrice = useNumWithComma(data.price);
-  const [quantity, setPlus, setMinus] = useCounter(data.remaining);
-  const stringTotal = useNumWithComma(data.price * quantity);
+  const [quantity, plus, minus] = useCounter(data.remaining);
+  const totalPrice = data.price * quantity;
+  const stringTotal = useNumWithComma(totalPrice);
+
+  const addData = async () => {
+    const docRef = collection(db, "user", userData.uid, "cart");
+    try {
+      const postRef = await addDoc(docRef, {
+        ...data,
+        choose: quantity,
+        total: totalPrice,
+      });
+      console.log(`Document written with ID: ${postRef.id}`);
+    } catch (err) {
+      alert(`error message: ${err}`);
+    }
+  };
+  const onCart = () => {
+    if (userData) {
+      addData();
+      navigate("/cart");
+    } else {
+      alert("로그인 후 이용할 수 있습니다");
+      navigate("/login");
+    }
+  };
+
+  const onBuy = () => {
+    if (userData) {
+      console.log("buy");
+    } else {
+      alert("로그인 후 이용할 수 있습니다");
+      navigate("/login");
+    }
+  };
 
   return (
     <div css={conStyle}>
@@ -44,7 +81,7 @@ export default function ProductDetail({ data }) {
         <h5 css={infoStyle}>[SKKU] {data.title}</h5>
         <span css={flexStyle}>
           <h5 css={infoStyle}>수량</h5>
-          <CartNumControl quantity={quantity} plus={setPlus} minus={setMinus} />
+          <CartNumControl quantity={quantity} plus={plus} minus={minus} />
         </span>
       </section>
       <h5 css={css(infoStyle, marginStyle)}>잔여수량 : {data.remaining}개</h5>
@@ -53,8 +90,16 @@ export default function ProductDetail({ data }) {
         <span css={totalPriceStyle}>{stringTotal} 원</span>
       </span>
       <section css={css(flexStyle, marginStyle)}>
-        <ProductBtn content={"CART"} children={<CartIcon css={IconStyle} />} />
-        <ProductBtn content={"BUY"} children={<BuyIcon css={IconStyle} />} />
+        <ProductBtn
+          content={"CART"}
+          handler={onCart}
+          children={<CartIcon css={IconStyle} />}
+        />
+        <ProductBtn
+          content={"BUY"}
+          handler={onBuy}
+          children={<BuyIcon css={IconStyle} />}
+        />
       </section>
     </div>
   );
