@@ -5,9 +5,9 @@ import RoundBtn from "../RoundBtn/RoundBtn";
 import UsedBookCard from "../UsedBookCard";
 
 export default function BookCardSlot(props) {
-  const { bookCardList, bookCardlistName, column } = props;
+  const { bookCardList, bookCardlistName, column, hover } = props;
   return (
-    <div>
+    <div css={wrap}>
       {bookCardlistName && (
         <div css={slotTopStyle}>
           <h1 css={slotTitleStyle}>{bookCardlistName}</h1>
@@ -16,12 +16,19 @@ export default function BookCardSlot(props) {
       )}
       <div css={gridStyle(column)}>
         {bookCardList.map((bookCardData) => (
-          <UsedBookCard key={bookCardData.id} data={bookCardData} />
+          <UsedBookCard
+            key={bookCardData.id}
+            data={bookCardData}
+            hover={hover}
+          />
         ))}
       </div>
     </div>
   );
 }
+const wrap = css`
+  width: 100%;
+`;
 
 const slotTopStyle = css`
   display: flex;

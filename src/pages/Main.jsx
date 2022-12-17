@@ -21,11 +21,13 @@ export default function Main() {
             bookCardlistName={"교양 서적"}
             bookCardList={generalData}
             column={6}
+            hover={true}
           />
           <BookCardSlot
             bookCardlistName={"전공 서적"}
             bookCardList={majorData}
             column={6}
+            hover={true}
           />
         </div>
       </AppLayout.Main>

@@ -53,7 +53,7 @@ const btnStyle = css`
 
 const container = css`
   margin-top: 20px;
-  padding: 10px;
+  padding: 10px 10px 0px 10px;
   width: 150px;
   /* box-shadow: 2px 0px 2px rgba(0, 0, 0, 0.25); */
   border-top: 1px solid #cdac01;
@@ -96,6 +96,7 @@ const titleStyle = css`
   align-items: center;
   letter-spacing: 0.1px;
   color: #403600;
+  padding-bottom: 10px;
 `;
 
 const flexStyle = css`

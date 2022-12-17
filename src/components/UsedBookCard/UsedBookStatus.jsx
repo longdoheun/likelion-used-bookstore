@@ -39,7 +39,7 @@ const usedBookStatusStyle = css`
   flex-direction: column;
   /* align-items: center; */
   justify-content: space-between;
-  gap: 5px;
+  /* gap: 5px; */
   /* gap: 0.3125rem; */
 `;
 

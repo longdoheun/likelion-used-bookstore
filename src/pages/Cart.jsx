@@ -7,7 +7,7 @@ import CartElement from "../components/CartElement/CartElement";
 import useFetch from "../hooks/useFetch";
 import useLogin from "../hooks/useLogin";
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
 export default function Cart() {
   const userData = useLogin();
@@ -15,16 +15,11 @@ export default function Cart() {
 
   useEffect(() => {
     if (!userData) {
-      navigate("/login");
+      navigate("/login", { replace: true });
     }
   }, []);
 
   const cartData = useFetch(`user/${userData.uid}/cart`);
-  // const [cartData, setCartData] = useState([]);
-
-  // useEffect(() => {
-  //   setCartData(data);
-  // }, [data]);
 
   return (
     <>

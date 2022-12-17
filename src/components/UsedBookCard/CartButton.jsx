@@ -20,7 +20,8 @@ const cartBgStyle = css`
   width: 20px;
   height: 20px;
   /* left: 143px; */
-  left: 8.9375rem;
+  /* left: 8.9375rem; */
+  right: 0.8rem;
   top: 5px;
   border-radius: 50%;
   background: #ffffff;

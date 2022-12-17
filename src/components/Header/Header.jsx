@@ -68,7 +68,7 @@ const headerStyle = css`
   justify-content: space-between;
   align-items: center;
   margin-top: 81px;
-  margin-bottom: 63.7px;
+  margin-bottom: 33.7px;
 `;
 const iconStyle = css`
   width: 50px;

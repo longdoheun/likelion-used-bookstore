@@ -14,7 +14,7 @@ export default function MyPage() {
 
   useEffect(() => {
     if (!userData) {
-      navigate("/login");
+      navigate("/login", { replace: true });
     }
   }, []);
 
