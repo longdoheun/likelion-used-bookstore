@@ -10,10 +10,6 @@ export default function UsedBookStatus(props) {
   const navigate = useNavigate();
   const stringifyNumber = useNumWithComma(data.price);
 
-  // useEffect(() => {
-  //   setStringifyNumber(data.price);
-  // }, [data]);
-
   return (
     <div
       css={usedBookStatusStyle}
@@ -44,7 +40,7 @@ const usedBookStatusStyle = css`
   /* align-items: center; */
   justify-content: space-between;
   gap: 5px;
-  gap: 0.3125rem;
+  /* gap: 0.3125rem; */
 `;
 
 const titleStyle = css`
