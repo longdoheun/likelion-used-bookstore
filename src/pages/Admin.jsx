@@ -6,16 +6,22 @@ import useInput from "../hooks/useInput";
 import { generalArr, majorArr } from "../utils/catergory";
 import { storage } from "../utils/firebase_config";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { collection, addDoc, doc } from "firebase/firestore";
+import { collection, addDoc } from "firebase/firestore";
 import { db } from "../utils/firebase_config";
+import AppLayout from "../components/AppLayout";
+import TagInput from "../components/TagInput/TagInput";
 
 export default function Admin() {
-  const [title, setTitle] = useInput();
-  const [author, setAuthor] = useInput();
-  const [subject, setSubject] = useInput();
-  const [remaining, setRemaining] = useInput();
-  const [price, setPrice] = useInput();
-  const [cost, setCost] = useInput();
+  const InputData = {
+    title: "",
+    authors: "",
+    subject: "",
+    remaining: "",
+    price: "",
+    cost: "",
+  };
+  const [inputValue, onChangeValue] = useInput(InputData);
+
   // selectBox
   const [mandatory, setMandatory] = useState("필수");
   const [division, setDivision] = useState("major");
@@ -25,18 +31,20 @@ export default function Admin() {
   const [image, setImage] = useState(null);
   const [url, setUrl] = useState(null);
 
-  const postData = {
-    title: title,
-    authors: author,
-    rank: rank,
-    price: Number(price),
-    cost: Number(cost),
-    mandatory: mandatory,
-    subject: subject,
-    category: category,
-    remaining: Number(remaining),
-    division: division,
-    imgUrl: url,
+  const bookConverter = {
+    toFirestore: (book) => {
+      return {
+        ...book,
+        remaining: Number(book.remaining),
+        price: Number(book.price),
+        cost: Number(book.cost),
+        rank: rank,
+        mandatory: mandatory,
+        category: category,
+        division: division,
+        imgUrl: url,
+      };
+    },
   };
 
   const handleImg = (e) => {
@@ -46,9 +54,9 @@ export default function Admin() {
   };
 
   const addData = async () => {
-    const docRef = collection(db, "book");
+    const docRef = collection(db, "book").withConverter(bookConverter);
     try {
-      const postRef = await addDoc(docRef, postData);
+      const postRef = await addDoc(docRef, inputValue);
       alert(`Document written with ID: ${postRef.id}`);
       window.location.reload();
     } catch (err) {
@@ -75,91 +83,99 @@ export default function Admin() {
     url && addData();
   }, [url]);
 
+  const inputArr = [
+    {
+      title: "책 제목",
+      type: "text",
+      placeholder: "최대 20자까지 입력 가능",
+      name: "title",
+      value: inputValue.title,
+      onChange: onChangeValue,
+    },
+    {
+      title: "책 저자",
+      type: "text",
+      placeholder: "최대 20자까지 입력 가능",
+      name: "authors",
+      value: inputValue.authors,
+      onChange: onChangeValue,
+    },
+    {
+      title: "과목",
+      type: "text",
+      placeholder: "책이 사용되는 과목을 입력",
+      name: "subject",
+      value: inputValue.subject,
+      onChange: onChangeValue,
+    },
+    {
+      title: "재고 수량",
+      type: "number",
+      placeholder: "해당 책 재고의 수량을 입력",
+      name: "remaining",
+      value: inputValue.remaining,
+      onChange: onChangeValue,
+    },
+    {
+      title: "정가",
+      type: "number",
+      placeholder: "해당 책의 정가를 입력",
+      name: "cost",
+      value: inputValue.cost,
+      onChange: onChangeValue,
+    },
+    {
+      title: "가격",
+      type: "number",
+      placeholder: "해당 책의 중고가격을 입력",
+      name: "price",
+      value: inputValue.price,
+      onChange: onChangeValue,
+    },
+  ];
+
   return (
-    <div css={adminStyle}>
-      <div>this is Admin page</div>
-      <input type="file" onChange={handleImg} />
-      <input
-        css={inputStyle}
-        autoComplete="off"
-        type="text"
-        name="name"
-        value={title}
-        placeholder="책 제목"
-        onChange={setTitle}
-      />
-      <input
-        css={inputStyle}
-        autoComplete="off"
-        type="text"
-        name="name"
-        value={author}
-        placeholder="책 저자"
-        onChange={setAuthor}
-      />
-      <input
-        css={inputStyle}
-        autoComplete="off"
-        type="text"
-        name="name"
-        value={subject}
-        placeholder="과목"
-        onChange={setSubject}
-      />
-      <input
-        css={inputStyle}
-        autoComplete="off"
-        type="number"
-        name="name"
-        value={remaining}
-        placeholder="수량"
-        onChange={setRemaining}
-      />
-      <input
-        css={inputStyle}
-        autoComplete="off"
-        type="number"
-        name="name"
-        value={cost}
-        placeholder="정가"
-        onChange={setCost}
-      />
-      <input
-        css={inputStyle}
-        autoComplete="off"
-        type="number"
-        name="name"
-        value={price}
-        placeholder="가격"
-        onChange={setPrice}
-      />
-      <section css={flexStyle}>
-        <SelectBox options={["major", "general"]} set={setDivision} />
-        {division === "major" ? (
-          <SelectBox options={majorArr} set={setCategory} />
-        ) : (
-          <SelectBox options={generalArr} set={setCategory} />
-        )}
-        <SelectBox options={["필수", "권장사항"]} set={setMandatory} />
-        <SelectBox options={["A", "B", "C"]} set={setRank} />
-      </section>
-      <button onClick={onSubmit}>submit</button>
-    </div>
+    <AppLayout.Main>
+      <div css={adminStyle}>
+        <div css={writeStyle}>책 정보 입력하기</div>
+        {inputArr.map((inc) => (
+          <TagInput key={inc.title} inputInfo={inc} />
+        ))}
+        <section css={flexStyle}>
+          <SelectBox options={["major", "general"]} set={setDivision} />
+          {division === "major" ? (
+            <SelectBox options={majorArr} set={setCategory} />
+          ) : (
+            <SelectBox options={generalArr} set={setCategory} />
+          )}
+          <SelectBox options={["필수", "권장사항"]} set={setMandatory} />
+          <SelectBox options={["A", "B", "C"]} set={setRank} />
+        </section>
+        <input type="file" onChange={handleImg} />
+
+        <button onClick={onSubmit}>submit</button>
+      </div>
+    </AppLayout.Main>
   );
 }
 
 const adminStyle = css`
+  width: 900px;
+  /* background: #fff; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  color: red;
+  color: #242424;
   margin: auto;
 `;
 
-const inputStyle = css`
-  width: 600px;
-  border: 1px solid;
+const writeStyle = css`
+  width: 100%;
+  border-bottom: 2px solid #cda901;
+  font-family: "Courier New", Courier, monospace;
+  font-weight: 700;
+  line-height: 35px;
 `;
 
 const flexStyle = css`

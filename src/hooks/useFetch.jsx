@@ -4,35 +4,28 @@ import { useState, useEffect, useCallback } from "react";
 
 export default function useFetch(collectionName, field, fieldValue) {
   const [value, setValue] = useState([]);
-  const docRef = collection(db, collectionName);
 
-  let selectedQuery;
+  const selectedQuery = useCallback(() => {
+    if (collectionName) {
+      const docRef = collection(db, collectionName);
+      switch (field) {
+        case "division":
+          return query(docRef, where("division", "==", fieldValue), limit(6));
 
-  switch (field) {
-    case "division":
-      selectedQuery = query(
-        docRef,
-        where("division", "==", fieldValue),
-        limit(6)
-      );
-      break;
+        case "category":
+          return query(docRef, where("category", "==", fieldValue), limit(30));
 
-    case "category":
-      selectedQuery = query(
-        docRef,
-        where("category", "==", fieldValue),
-        limit(30)
-      );
-      break;
+        default:
+          return query(docRef, limit(30));
+      }
+    } else return null;
+  }, [collectionName, field, fieldValue]);
 
-    default:
-      selectedQuery = query(docRef, limit(30));
-  }
-
-  const fetchGroup = useCallback(async () => {
-    if (selectedQuery) {
+  const fetchDataAsync = async () => {
+    const query = selectedQuery();
+    if (query) {
       try {
-        const querySnapShot = await getDocs(selectedQuery);
+        const querySnapShot = await getDocs(query);
         const response = querySnapShot.docs.map((doc) => {
           return { ...doc.data(), id: doc.id };
         });
@@ -42,11 +35,11 @@ export default function useFetch(collectionName, field, fieldValue) {
         console.log("fetch error", err);
       }
     }
-  }, [selectedQuery]);
+  };
 
   useEffect(() => {
-    fetchGroup();
-  }, [field, fieldValue]);
+    fetchDataAsync();
+  }, [collectionName, field, fieldValue]);
 
   return value;
 }
