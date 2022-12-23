@@ -6,7 +6,8 @@ export default function UsedBookImage({ url, hover, handler }) {
   return (
     <div
       onClick={handler}
-      css={css(hover && hoverStyle, usedBookImageStyle(url))}
+      // css={css(hover && hoverStyle, usedBookImageStyle(url))}
+      css={usedBookImageStyle(url)}
     ></div>
   );
 }
